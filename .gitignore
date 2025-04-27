@@ -1,0 +1,45 @@
+# 通用忽略规则
+.DS_Store
+Thumbs.db
+/app/client/node_modules/
+/app/client/dist/
+/app/server/main
+/app/client/.env
+**/*/*.log
+/node_modules
+
+# pnpm 相关
+/app/client/pnpm-lock.yaml
+
+# Vite 构建输出（假如你配置了）
+/app/client/.vite/
+
+# TypeScript 编译产物
+/app/client/*.tsbuildinfo
+
+# VSCode 配置（可选）
+**/*/.vscode/
+
+# 前端缓存
+/app/client/.cache/
+/app/client/dist/
+
+# Go 构建输出和缓存
+/app/server/bin/
+/app/server/pkg/
+/app/server/*.exe
+/app/server/*.out
+/app/server/*.test
+/app/server/*.o
+/app/server/*.a
+
+# 临时文件
+**/*/*.swp
+**/*/*.swo
+**/*/*.tmp
+
+# 忽略 IDEA / WebStorm 等 IDE 生成的目录（可选）
+**/*/.idea/
+
+# 可选忽略 README 变化（如果只是临时测试修改）
+# README.md
