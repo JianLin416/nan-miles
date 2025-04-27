@@ -48,7 +48,7 @@ export default function DashBoard() {
         ws.onclose = function () {
             console.log(`WebSocket connection closed on port ${currentPort}, trying next port...`);
             currentPort++
-            setTimeout(connect, 3000);
+            setTimeout(connect, 5000);
         };
 
         ws.onerror = function (error) {

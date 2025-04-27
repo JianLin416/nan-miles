@@ -13,24 +13,19 @@ import (
 	"github.com/gorilla/websocket"
 )
 
-func CheckPort(port int) bool {
+func CheckPort(port int) int {
 	ln, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
 	if err != nil {
-		return false
+		CheckPort(port + 1)
 	}
 	_ = ln.Close()
-	return true
+	return port
 }
 
 func main() {
 	port := 8080
 
-	for {
-		if CheckPort(port) {
-			break
-		}
-		port++
-	}
+	port = CheckPort(port)
 
 	utils.RunCommand("sudo ip link set can0 down")
 	utils.RunCommand("sudo ip link set can0 type can bitrate 500000")
