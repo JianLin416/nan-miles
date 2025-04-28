@@ -67,8 +67,8 @@ export default function DashBoard() {
     }, [])
 
     return (
-        <div className="flex h-screen gap-6 flex-row-reverse p-15">
-            <div className="flex flex-col justify-between gap-6">
+        <div className="flex h-screen gap-3 xl:gap-6 flex-row-reverse p-5 xl:p-15">
+            <div className="flex flex-col justify-between gap-3 xl:gap-6">
                 <WeatherReader weather={weather} />
                 <FuelReader fuelLast={fuelLast} />
                 <Throttle throttlePos={throttlePos} />
