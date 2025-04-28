@@ -54,7 +54,7 @@ pnpm start
 
     - 注意自行配置go的可执行文件的路径
     ```bash
-    cp scripts/nan-miles-background.service /etc/systemd/system/
+    cp scripts/nan-miles-backend.service /etc/systemd/system/
 
-    systemctl start nan-miles-background
+    systemctl enable nan-miles-backend
     ```

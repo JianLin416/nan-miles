@@ -1,0 +1,12 @@
+[Unit]
+Description=nan-miles-background
+After=network.target
+
+[Service]
+ExecStart=/path/to/your/executable
+Restart=always
+User=your-user
+Environment="PATH=/usr/local/bin:/usr/bin:/bin"
+
+[Install]
+WantedBy=multi-user.target
