@@ -39,3 +39,22 @@ pnpm dev
 pnpm build
 pnpm start
 ```
+
+4. 开机自启与全屏展示
+
+    所需脚本在script目录下
+
+    - 设置前端开机自启
+
+    ```bash
+    cp scripts/nan-miles.desktop ~/.config/autostart
+    ```
+
+    - 将scripts/nginx中的内容复制进nginx.conf 注意自行配置dist目录
+
+    - 注意自行配置go的可执行文件的路径
+    ```bash
+    cp scripts/nan-miles-background.service /etc/systemd/system/
+
+    systemctl start nan-miles-background
+    ```

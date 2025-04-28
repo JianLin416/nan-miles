@@ -1,0 +1,8 @@
+ server {
+        listen          3000;
+        server_name     0.0.0.0;
+        location / {
+            root        /location/to/your/dist;
+            index       index.html;
+	}
+}
