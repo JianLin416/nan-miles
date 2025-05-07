@@ -43,3 +43,5 @@ Thumbs.db
 
 # 可选忽略 README 变化（如果只是临时测试修改）
 # README.md
+
+.VSCodeCounter
