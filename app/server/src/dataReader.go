@@ -71,7 +71,7 @@ func DataReader(
 
 			if msg[1] == 0x41 && msg[2] == 0x0C {
 				mu.Lock()
-				dataResponse.Rpm = int((int16(msg[3])*256 + int16(msg[4])) / 100)
+				dataResponse.Rpm = int((int16(msg[3])*256 + int16(msg[4])) / 4)
 				mu.Unlock()
 			}
 

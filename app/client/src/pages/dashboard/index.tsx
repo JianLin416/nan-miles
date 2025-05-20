@@ -28,7 +28,7 @@ export default function DashBoard() {
     let currentPort = 8080
 
     function connect() {
-        ws = new WebSocket(`ws://127.0.0.1:${currentPort}/ws/get_data`);
+        ws = new WebSocket(`ws://172.20.10.2:${currentPort}/ws/get_data`);
 
         ws.onopen = function () {
             console.log(`Connected to WebSocket server on port ${currentPort}`);
