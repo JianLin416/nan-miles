@@ -34,7 +34,7 @@ func DataReader(
 	}
 
 	conn.SetPingHandler(func(appData string) error {
-		err := conn.WriteControl(websocket.PongMessage, []byte(appData), time.Now().Add(time.Second))
+		err = conn.WriteControl(websocket.PongMessage, []byte(appData), time.Now().Add(time.Second))
 		if err != nil {
 			return err
 		}
@@ -45,11 +45,11 @@ func DataReader(
 		select {
 		case <-ticker.C:
 			service.CoolerReader(canConnection)
-			service.FuelReader(canConnection)
 			service.IntakeReader(canConnection)
-			service.OilTempReader(canConnection)
 			service.ThrottleReader(canConnection)
 			service.WeatherReader(canConnection)
+			service.SpeedReader(canConnection)
+			service.RpmReader(canConnection)
 
 			mu.Lock()
 			jsonData, _ := json.Marshal(dataResponse)
@@ -69,9 +69,9 @@ func DataReader(
 				mu.Unlock()
 			}
 
-			if msg[1] == 0x41 && msg[2] == 0x2F {
+			if msg[1] == 0x41 && msg[2] == 0x0C {
 				mu.Lock()
-				dataResponse.FuelLast = int((int16(msg[3]) * 100) / 255)
+				dataResponse.Rpm = int((int16(msg[3])*256 + int16(msg[4])) / 100)
 				mu.Unlock()
 			}
 
@@ -81,9 +81,9 @@ func DataReader(
 				mu.Unlock()
 			}
 
-			if msg[1] == 0x41 && msg[2] == 0x5C {
+			if msg[1] == 0x41 && msg[2] == 0x0D {
 				mu.Lock()
-				dataResponse.OilTemp = int(int16(msg[3]) - 40)
+				dataResponse.Speed = int(msg[3])
 				mu.Unlock()
 			}
 
@@ -95,7 +95,7 @@ func DataReader(
 
 			if msg[1] == 0x41 && msg[2] == 0x46 {
 				mu.Lock()
-				dataResponse.Weather = int(int16(msg[3] - 40))
+				dataResponse.OutsideTemp = int(int16(msg[3] - 40))
 				mu.Unlock()
 			}
 

@@ -1,10 +1,10 @@
 package models
 
 type DataResponse struct {
-	FuelLast    int `json:"fuelLast"`
 	CoolerTemp  int `json:"coolerTemp"`
 	IntakeTemp  int `json:"intakeTemp"`
-	OilTemp     int `json:"oilTemp"`
+	Speed       int `json:"speed"`
+	Rpm         int `json:"rpm"`
 	ThrottlePos int `json:"throttlePos"`
-	Weather     int `json:"weather"`
+	OutsideTemp int `json:"outsideTemp"`
 }

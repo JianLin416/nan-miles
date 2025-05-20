@@ -2,10 +2,11 @@ package utils
 
 import (
 	"context"
-	"go.einride.tech/can"
-	"go.einride.tech/can/pkg/socketcan"
 	"log"
 	"net"
+
+	"go.einride.tech/can"
+	"go.einride.tech/can/pkg/socketcan"
 )
 
 func GetConnection(killConnection chan struct{}, data chan [8]uint8) (conn net.Conn) {
@@ -25,7 +26,9 @@ func GetConnection(killConnection chan struct{}, data chan [8]uint8) (conn net.C
 			default:
 				frame = recv.Frame()
 
-				data <- frame.Data
+				if frame.ID == 0x7E8 {
+					data <- frame.Data
+				}
 			}
 		}
 	}()

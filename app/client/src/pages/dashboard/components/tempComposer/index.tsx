@@ -1,22 +1,22 @@
 import { Card, CardContent } from "@/components/ui/card";
 import IntakeTemp from "./intakeTemp";
 import CoolerTemp from "./coolerTemp";
-import OilTemp from "./oilTemp";
+import OutsideTemp from "./outsideTemp";
 
 export default function TempComposer({
     coolerTemp,
-    oilTemp,
+    outsideTemp,
     intakeTemp
 }: {
     coolerTemp: number
-    oilTemp: number
+    outsideTemp: number
     intakeTemp: number
 }) {
     return (
         <Card className="w-30 sm:w-35 md:w-45 lg:w-55 xl:w-65 2xl:w-75">
             <CardContent className="flex flex-col justify-between py-5 h-full">
                 <CoolerTemp coolerTemp={coolerTemp} />
-                <OilTemp oilTemp={oilTemp} />
+                <OutsideTemp outsideTemp={outsideTemp} />
                 <IntakeTemp intakeTemp={intakeTemp} />
             </CardContent>
         </Card>

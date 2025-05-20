@@ -1,27 +1,27 @@
 import { useEffect, useState } from "react";
-import FuelReader from "./components/fuelReader/index";
+import SpeedReader from "./components/speedReader/index";
 import TempComposer from "./components/tempComposer";
 import Throttle from "./components/throttle/index";
-import WeatherReader from "./components/weatherReader";
+import RpmReader from "./components/rpmReader";
 import RadioCast from "./components/radioCast";
 
 interface DataResponse {
-    fuelLast: number,
+    speed: number,
     coolerTemp: number,
     intakeTemp: number,
-    oilTemp: number,
+    rpm: number,
     throttlePos: number,
-    weather: number
+    outsideTemp: number
 }
 
 export default function DashBoard() {
 
-    const [fuelLast, setFuelLast] = useState(0)
+    const [speed, setSpeed] = useState(0)
+    const [rpm, setRpm] = useState(0)
     const [coolerTemp, setCoolerTemp] = useState(0)
     const [intakeTemp, setIntakeTemp] = useState(0)
-    const [oilTemp, setOilTemp] = useState(0)
     const [throttlePos, setThrottlePos] = useState(0)
-    const [weather, setWeather] = useState(0)
+    const [outsideTemp, setOutsideTemp] = useState(0)
 
     let ws: WebSocket
     let data: any
@@ -36,12 +36,12 @@ export default function DashBoard() {
 
         ws.onmessage = function (event) {
             data = JSON.parse(event.data) as DataResponse
-            setFuelLast(data.fuelLast)
+            setSpeed(data.speed)
             setCoolerTemp(data.coolerTemp)
             setIntakeTemp(data.intakeTemp)
-            setOilTemp(data.oilTemp)
+            setRpm(data.rpm)
             setThrottlePos(data.throttlePos)
-            setWeather(data.weather)
+            setOutsideTemp(data.outsideTemp)
             console.log("Received data:", data);
         };
 
@@ -69,12 +69,12 @@ export default function DashBoard() {
     return (
         <div className="flex h-screen gap-3 xl:gap-6 flex-row-reverse p-5 xl:p-15">
             <div className="flex flex-col justify-between gap-3 xl:gap-6">
-                <WeatherReader weather={weather} />
-                <FuelReader fuelLast={fuelLast} />
+                <RpmReader rpm={rpm} />
+                <SpeedReader speed={speed} />
                 <Throttle throttlePos={throttlePos} />
             </div>
             <TempComposer
-                oilTemp={oilTemp}
+                outsideTemp={outsideTemp}
                 coolerTemp={coolerTemp}
                 intakeTemp={intakeTemp}
             />
